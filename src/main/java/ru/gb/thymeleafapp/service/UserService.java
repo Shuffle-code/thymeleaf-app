@@ -1,13 +1,18 @@
 package ru.gb.thymeleafapp.service;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.gb.gbapimay.security.api.AuthenticationUserGateway;
 import ru.gb.gbapimay.security.api.UserGateway;
 import ru.gb.gbapimay.security.dto.AuthenticationUserDto;
 import ru.gb.gbapimay.security.dto.UserDto;
-
 import java.util.List;
 
 @Service
@@ -37,7 +42,10 @@ public class UserService {
         userGateway.deleteById(id);
     }
 
-    public void login(AuthenticationUserDto authenticationUserDto){
+
+
+    public void login(AuthenticationUserDto authenticationUserDto) {
+        System.out.println("Здесь должно быть имя логинера: " + authenticationUserDto.getUsername());
         authenticationUserGateway.login(authenticationUserDto);
     }
 }

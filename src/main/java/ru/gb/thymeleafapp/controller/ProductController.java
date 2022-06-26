@@ -27,10 +27,10 @@ public class ProductController {
         return "product-list";
     }
 
-    @GetMapping("/authorizePage")
-    public String authCartUser() {
-        return "cart-authorize";
-    }
+//    @GetMapping("/authorizePage")
+//    public String authCartUser() {
+//        return "cart-authorize";
+//    }
 
 //    @GetMapping
 //    @PreAuthorize("hasAnyAuthority('product.create', 'product.update')")
@@ -45,19 +45,19 @@ public class ProductController {
 //        return "product-form";
 //    }
 //
-//    @GetMapping("/{productId}")
-////    @PreAuthorize("isAnonymous()")
-////    @PreAuthorize("hasAnyAuthority('product.read')")
-//    public String info(Model model, @PathVariable(name = "productId") Long id) {
-//        Product product;
-//        if (id != null) {
-//            product = productService.findById(id);
-//        } else {
-//            return "redirect:/product/all";
-//        }
-//        model.addAttribute("product", product);
-//        return "product-info";
-//    }
+    @GetMapping("/{productId}")
+//    @PreAuthorize("isAnonymous()")
+//    @PreAuthorize("hasAnyAuthority('product.read')")
+    public String info(Model model, @PathVariable(name = "productId") Long id) {
+        ProductDto product;
+        if (id != null) {
+            product = productService.findById(id);
+        } else {
+            return "redirect:/product/all";
+        }
+        model.addAttribute("product", product);
+        return "product-info";
+    }
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('product.create', 'product.update')")
