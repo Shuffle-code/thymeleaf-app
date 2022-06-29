@@ -47,10 +47,10 @@
                 <td sec:authorize="hasAuthority('product.delete')">
                     <a type="button"  th:href="@{${'/product/delete/' + product.id}}" class="btn btn-danger">Удалить</a>
                 </td>
-<!--                <td>-->
+                <td>
 <!--                    <a type="button" sec:authorize="hasAuthority('product.read')" th:href="@{/product/addToCart(id=${product.id})}" class="btn btn-success">Добавить в корзину</a>-->
-<!--                    <a type="button" sec:authorize="isAnonymous()" th:href="@{/product/authorizePage}" class="btn btn-success">Добавить в корзину</a>-->
-<!--                </td>-->
+                    <a type="button" sec:authorize="isAnonymous()" th:href="@{/product/authorizePage}" class="btn btn-success">Добавить в корзину</a>
+                </td>
             </tr>
             </tbody>
         </table>

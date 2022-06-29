@@ -20,12 +20,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests((request) -> {
-            request.antMatchers("/product/all").permitAll();
-            request.antMatchers("/").permitAll();//позволяет ходить всем на страницу без авторизации
-            request.antMatchers(HttpMethod.POST, "/product").hasAuthority("product.create");
-            request.antMatchers(HttpMethod.GET, "/product").hasAuthority("product.create");
-//            request.antMatchers(HttpMethod.GET, "/product/authorizePage").permitAll();
-            request.mvcMatchers(HttpMethod.GET,"/product/{productId}").permitAll();
+            request.antMatchers("/").permitAll();
+//            request.antMatchers("/auth/addNewUser").permitAll();
+//            request.antMatchers("/").permitAll();//позволяет ходить всем на страницу без авторизации
+//            request.antMatchers(HttpMethod.POST, "/product").hasAuthority("product.create");
+//            request.antMatchers(HttpMethod.GET, "/product").hasAuthority("product.create");
+////            request.antMatchers(HttpMethod.GET, "/product/authorizePage").permitAll();
+//            request.mvcMatchers(HttpMethod.GET,"/product/{productId}").permitAll();
         });
 //        auth.inMemoryAuthentication()
 //                .withUser("user")
@@ -37,12 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .roles("ADMIN");
 //        http.formLogin().loginPage("/login").defaultSuccessUrl("/product/all", true);
 //        http.exceptionHandling().accessDeniedPage("/errors/access-denied");
-        http.authorizeRequests((request) -> {
-            ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)request.anyRequest()).authenticated();
-        });
-        http.exceptionHandling().accessDeniedPage("/access-denied");
-        http.formLogin();
-        http.httpBasic();
+//        http.authorizeRequests((request) -> {
+//            ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)request.anyRequest()).authenticated();
+//        });
+//        http.exceptionHandling().accessDeniedPage("/access-denied");
+        http.httpBasic().disable();
+        http.csrf().disable();
+//        http.formLogin();
+//        http.httpBasic();
     }
 
     @Bean
